@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Apple Notes to PDF: from lock-in to local freedom">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#5b9dff"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <text x="60" y="70" fill="#e8eefc" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="36" font-weight="700">Apple Notes → Local Freedom</text>
+  <text x="60" y="110" fill="#9aa8c7" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18">v7 free open-source exporter · 100% on your Mac</text>
+
+  <!-- Left -->
+  <rect x="60" y="160" width="300" height="360" rx="20" fill="#151d2e" stroke="#243049"/>
+  <rect x="150" y="210" width="120" height="150" rx="12" fill="#f7d774"/>
+  <rect x="165" y="235" width="90" height="8" rx="4" fill="#0b1220" opacity="0.5"/>
+  <rect x="165" y="255" width="70" height="8" rx="4" fill="#0b1220" opacity="0.4"/>
+  <circle cx="250" cy="330" r="18" fill="#0b1220"/>
+  <text x="210" y="336" fill="#f7d774" font-size="16" font-family="Segoe UI, sans-serif" text-anchor="middle">🔒</text>
+  <text x="210" y="400" fill="#e8eefc" font-size="22" font-weight="700" font-family="Segoe UI, sans-serif" text-anchor="middle">Lock-in</text>
+  <text x="210" y="435" fill="#9aa8c7" font-size="14" font-family="Segoe UI, sans-serif" text-anchor="middle">Trapped in Notes.app</text>
+  <text x="210" y="460" fill="#9aa8c7" font-size="14" font-family="Segoe UI, sans-serif" text-anchor="middle">No bulk multi-format export</text>
+
+  <!-- Arrow -->
+  <path d="M390 340 H470" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M455 320 L480 340 L455 360" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Center -->
+  <rect x="500" y="200" width="200" height="280" rx="20" fill="#151d2e" stroke="#5b9dff"/>
+  <text x="600" y="260" fill="#5b9dff" font-size="16" font-family="Segoe UI, sans-serif" text-anchor="middle">Rich HTML</text>
+  <text x="600" y="300" fill="#e8eefc" font-size="20" font-weight="700" font-family="Segoe UI, sans-serif" text-anchor="middle">Automation</text>
+  <text x="600" y="340" fill="#9aa8c7" font-size="14" font-family="Segoe UI, sans-serif" text-anchor="middle">on-device only</text>
+  <circle cx="600" cy="400" r="28" fill="#34d399"/>
+  <text x="600" y="408" fill="#0b1220" font-size="22" font-family="Segoe UI, sans-serif" text-anchor="middle">🛡</text>
+
+  <!-- Arrow 2 -->
+  <path d="M720 340 H800" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M785 320 L810 340 L785 360" fill="none" stroke="#34d399" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Right -->
+  <rect x="830" y="160" width="310" height="360" rx="20" fill="#151d2e" stroke="#243049"/>
+  <text x="985" y="210" fill="#e8eefc" font-size="22" font-weight="700" font-family="Segoe UI, sans-serif" text-anchor="middle">Freedom</text>
+  <rect x="860" y="240" width="250" height="44" rx="10" fill="#0b1220" stroke="#243049"/>
+  <text x="985" y="268" fill="#5b9dff" font-size="16" font-family="Segoe UI, sans-serif" text-anchor="middle">Searchable PDF</text>
+  <rect x="860" y="300" width="250" height="44" rx="10" fill="#0b1220" stroke="#243049"/>
+  <text x="985" y="328" fill="#5b9dff" font-size="16" font-family="Segoe UI, sans-serif" text-anchor="middle">Obsidian Markdown</text>
+  <rect x="860" y="360" width="250" height="44" rx="10" fill="#0b1220" stroke="#243049"/>
+  <text x="985" y="388" fill="#5b9dff" font-size="16" font-family="Segoe UI, sans-serif" text-anchor="middle">HTML + Attachments</text>
+  <rect x="860" y="420" width="250" height="44" rx="10" fill="#0b1220" stroke="#243049"/>
+  <text x="985" y="448" fill="#5b9dff" font-size="16" font-family="Segoe UI, sans-serif" text-anchor="middle">Hierarchy · Incremental</text>
+
+  <!-- Footer -->
+  <rect x="60" y="560" width="1080" height="64" rx="16" fill="#151d2e" stroke="#243049"/>
+  <text x="600" y="600" fill="#e8eefc" font-size="20" font-family="Segoe UI, sans-serif" text-anchor="middle">100% local  ·  MIT  ·  Free forever  ·  github.com/Pitchfork-and-Torch/Apple-Notes-to-PDF</text>
+</svg>

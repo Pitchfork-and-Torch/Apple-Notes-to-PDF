@@ -1,0 +1,157 @@
+/**
+ * Apple Notes to PDF — export engine (JXA)
+ * Invoked by export-apple-notes.sh via: osascript -l JavaScript lib/export-engine.jxa.js
+ * Reads configuration from environment variables (exported by the shell wrapper).
+ */
+ObjC.import("Foundation");
+ObjC.import("stdlib");
+
+function env(name, fallback) {
+  try {
+    var v = $.getenv(name);
+    if (v === null || v === undefined) return fallback || "";
+    return ObjC.unwrap(v);
+  } catch (e) {
+    return fallback || "";
+  }
+}
+
+function shellQuote(s) {
+  return "'" + String(s).replace(/'/g, "'\\''") + "'";
+}
+
+function writeTextFile(path, content) {
+  var str = $.NSString.alloc.initWithUTF8String(String(content));
+  if (!str) {
+    str = $.NSString.stringWithString(String(content));
+  }
+  str.writeToFileAtomicallyEncodingError(path, true, $.NSUTF8StringEncoding, null);
+}
+
+function readTextFile(path) {
+  try {
+    var s = $.NSString.stringWithContentsOfFileEncodingError(path, $.NSUTF8StringEncoding, null);
+    return s ? ObjC.unwrap(s) : "";
+  } catch (e) {
+    return "";
+  }
+}
+
+function ensureDir(path) {
+  var app = Application.currentApplication();
+  app.includeStandardAdditions = true;
+  app.doShellScript("mkdir -p " + shellQuote(path));
+}
+
+function loadPathUtils(scriptDir) {
+  var path = scriptDir + "/lib/path-utils.js";
+  var src = readTextFile(path);
+  if (src) eval(src);
+  if (typeof AppleNotesPathUtils === "undefined") {
+    console.log("WARN: path-utils.js missing; using built-in sanitize");
+    this.AppleNotesPathUtils = {
+      sanitizeFilename: sanitizeFilename,
+      sanitizePathSeg: sanitizePathSeg,
+      uniqueSlug: function (folderRel, title, slugCounts, maxLen) {
+        var baseSlug = sanitizeFilename(title, maxLen || 60);
+        var key = String(folderRel || "") + "\0" + baseSlug.toLowerCase();
+        if (slugCounts[key] == null) slugCounts[key] = 0;
+        else slugCounts[key]++;
+        var n = slugCounts[key];
+        var slug = n ? baseSlug + "-" + n : baseSlug;
+        var usedKey = String(folderRel || "") + "\0" + slug.toLowerCase();
+        while (slugCounts["__used__" + usedKey]) {
+          n++;
+          slug = baseSlug + "-" + n;
+          usedKey = String(folderRel || "") + "\0" + slug.toLowerCase();
+        }
+        slugCounts["__used__" + usedKey] = true;
+        return { slug: slug, baseSlug: baseSlug };
+      },
+      shortIdSuffix: function (id) {
+        var s = String(id || "");
+        var m = s.match(/\/p(\d+)$/);
+        return m ? m[1] : "x";
+      }
+    };
+  }
+}
+
+function sanitizeFilename(name, maxLen) {
+  if (typeof AppleNotesPathUtils !== "undefined") return AppleNotesPathUtils.sanitizeFilename(name, maxLen);
+  maxLen = maxLen || 80;
+  var s = String(name || "Untitled")
+    .replace(/[\/\\:\*\?"<>\|\x00-\x1f]/g, "_")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!s) s = "Untitled";
+  if (s.length > maxLen) s = s.slice(0, maxLen).trim();
+  return s;
+}
+
+function sanitizePathSeg(name) {
+  if (typeof AppleNotesPathUtils !== "undefined") return AppleNotesPathUtils.sanitizePathSeg(name);
+  return sanitizeFilename(name, 60) || "Folder";
+}
+
+function formatDate(d) {
+  if (!d) return "";
+  try {
+    var dt = d instanceof Date ? d : new Date(String(d));
+    if (isNaN(dt.getTime())) return String(d);
+    return dt.toISOString().replace(/\.\d{3}Z$/, "Z");
+  } catch (e) {
+    return String(d);
+  }
+}
+
+function formatDateLocal(d) {
+  if (!d) return "Unknown";
+  try {
+    var dt = d instanceof Date ? d : new Date(String(d));
+    if (isNaN(dt.getTime())) return String(d);
+    return dt.toISOString().slice(0, 19).replace("T", " ");
+  } catch (e) {
+    return "Unknown";
+  }
+}
+
+function setProgress(cur, tot, title, eta) {
+  var app = Application.currentApplication();
+  app.includeStandardAdditions = true;
+  var msg = String(title || "").replace(/\|/g, "/").replace(/'/g, "").slice(0, 40);
+  var line = cur + "|" + tot + "|" + msg + "|" + (eta || "");
+  app.doShellScript("printf %s " + shellQuote(line) + " > /tmp/apple-notes-to-pdf-progress.txt");
+}
+
+function loadHtmlToMd(scriptDir) {
+  var path = scriptDir + "/lib/html-to-markdown.js";
+  var src = readTextFile(path);
+  if (!src) {
+    // minimal fallback
+    this.AppleNotesHtmlToMarkdown = {
+      htmlToMarkdown: function (html, meta) {
+        var t = String(html || "").replace(/<[^>]+>/g, "");
+        return "---\ntitle: \"" + (meta && meta.title ? meta.title : "") + "\"\n---\n\n" + t + "\n";
+      }
+    };
+    return;
+  }
+  eval(src);
+}
+
+function classifyAttachment(name) {
+  var n = String(name || "").toLowerCase();
+  if (/\.(png|jpe?g|gif|heic|heif|tiff?|webp|bmp|svg)$/.test(n)) return "images";
+  if (/\.(pdf|docx?|xlsx?|pptx?|txt|rtf|pages|numbers|key)$/.test(n)) return "documents";
+  if (/\.(m4a|mp3|wav|aac|aiff?|caf)$/.test(n)) return "audio";
+  if (/\.(mp4|mov|m4v|avi|mkv)$/.test(n)) return "video";
+  return "other";
+}
+
+function escapeHtml(s) {
+  return String(s || "")
+    .replace(/&/g, "&")
+    .replace(/</g, "<")
+    .replace(/>/g, ">")
+    .replace(/"/g, """)

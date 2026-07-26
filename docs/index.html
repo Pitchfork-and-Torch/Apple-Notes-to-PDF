@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apple Notes to PDF — Free Local Export to PDF, Markdown &amp; HTML</title>
+  <meta name="description" content="Export Apple Notes to PDF, Markdown, HTML, and plain text on your Mac. 100% local, open source (MIT), no cloud upload. Bulk backup Notes.app for Obsidian and archives." />
+  <meta name="keywords" content="export Apple Notes to PDF, backup Apple Notes locally, Apple Notes to Markdown Obsidian, bulk export Notes.app, Notes.app export without iCloud, free Apple Notes exporter" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Apple Notes to PDF — Free Local Notes Exporter" />
+  <meta property="og:description" content="Bulk export Notes.app to searchable PDF, Markdown, HTML &amp; JSON. 100% local. MIT. Zero telemetry." />
+  <meta property="og:url" content="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/" />
+  <meta property="og:image" content="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Apple Notes to PDF — Free Local Notes Exporter" />
+  <meta name="twitter:description" content="Bulk export Notes.app to PDF, Markdown, HTML. 100% local. MIT. No cloud." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="alternate" hreflang="en" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/" />
+  <link rel="alternate" hreflang="es" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/?lang=es" />
+  <link rel="alternate" hreflang="fr" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/?lang=fr" />
+  <link rel="alternate" hreflang="de" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/?lang=de" />
+  <link rel="alternate" hreflang="ja" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/?lang=ja" />
+  <link rel="alternate" hreflang="zh-CN" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/?lang=zh-CN" />
+  <link rel="alternate" hreflang="pt" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/?lang=pt" />
+  <link rel="alternate" hreflang="ko" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/?lang=ko" />
+  <link rel="alternate" hreflang="it" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/?lang=it" />
+  <link rel="alternate" hreflang="ru" href="https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/?lang=ru" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "Apple Notes to PDF",
+        "operatingSystem": "macOS 12+",
+        "applicationCategory": "UtilitiesApplication",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "license": "https://opensource.org/licenses/MIT",
+        "softwareVersion": "7.0.0",
+        "description": "Free local exporter for Apple Notes to PDF, Markdown, HTML, and JSON. No cloud upload.",
+        "url": "https://github.com/Pitchfork-and-Torch/Apple-Notes-to-PDF",
+        "author": { "@type": "Organization", "name": "Pitchfork and Torch" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does Apple Notes to PDF upload my notes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Export runs entirely on your Mac via Notes.app Automation and writes only to a folder you choose. There is no telemetry or cloud account."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I export Apple Notes to Markdown for Obsidian?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Version 7 writes Markdown files with YAML frontmatter and relative image links, suitable for Obsidian and Logseq."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I bulk export Notes.app without iCloud APIs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Install Apple Notes to PDF, grant Automation access to Notes, then run the app or ./export-apple-notes.sh. It reads notes already synced to your Mac."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "name": "Export Apple Notes to PDF locally",
+        "step": [
+          { "@type": "HowToStep", "name": "Download", "text": "Download the latest release zip from GitHub." },
+          { "@type": "HowToStep", "name": "Allow Automation", "text": "Grant Terminal or the app permission to control Notes in System Settings." },
+          { "@type": "HowToStep", "name": "Export", "text": "Run the app or ./export-apple-notes.sh and open the Desktop export folder." }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "name": "Pitchfork and Torch",
+        "url": "https://github.com/Pitchfork-and-Torch"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="./" data-i18n="brand">Apple Notes to PDF</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#features" data-i18n="nav_features">Features</a>
+        <a href="#how" data-i18n="nav_how">How it works</a>
+        <a href="#compare" data-i18n="nav_compare">Compare</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
+        <a class="btn btn-sm" href="https://github.com/Pitchfork-and-Torch/Apple-Notes-to-PDF/releases/latest" data-i18n="nav_download">Download</a>
+      </nav>
+      <div class="header-tools">
+        <label class="sr-only" for="lang">Language</label>
+        <select id="lang" aria-label="Language">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="ja">日本語</option>
+          <option value="zh-CN">简体中文</option>
+          <option value="pt">Português</option>
+          <option value="ko">한국어</option>
+          <option value="it">Italiano</option>
+          <option value="ru">Русский</option>
+        </select>
+        <button type="button" id="themeToggle" class="icon-btn" aria-label="Toggle color theme">◐</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow" data-i18n="eyebrow">v7.0.0 · MIT · 100% local</p>
+          <h1 data-i18n="hero_title">Export Apple Notes to PDF, Markdown &amp; HTML — privately</h1>
+          <p class="lede" data-i18n="hero_lede">The free, open-source bulk exporter for Notes.app. Searchable master PDF, per-note files, Obsidian-ready Markdown, attachments, folder hierarchy — all on your Mac. No cloud. No telemetry. No account.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/Pitchfork-and-Torch/Apple-Notes-to-PDF/releases/latest" data-i18n="cta_download">Download v7.0.0</a>
+            <a class="btn btn-ghost" href="https://github.com/Pitchfork-and-Torch/Apple-Notes-to-PDF" data-i18n="cta_github">View on GitHub</a>
+          </div>
+          <p class="fine" data-i18n="hero_fine">macOS 12+ · Automation permission only for core export · Full Disk Access optional for attachments</p>
+        </div>
+        <div class="hero-card" aria-hidden="true">
+          <div class="fake-window">
+            <div class="fake-dots"><span></span><span></span><span></span></div>
+            <pre class="code">$ ./export-apple-notes.sh --limit 5
+🍎 [INFO] Apple Notes to PDF v7.0.0
+🍎 [INFO] Output: ~/Desktop/Apple_Notes_Export_…
+Found 5 notes to export
+✅ [SUCCESS] Export complete
+
+  Apple_Notes_Master.pdf
+  master.html
+  notes/…/*.md
+  index.json</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="wrap">
+        <h2 data-i18n="feat_title">Built for privacy, fidelity, and archives</h2>
+        <div class="grid features">
+          <article class="card"><div class="icon">🛡️</div><h3 data-i18n="f1t">100% local</h3><p data-i18n="f1d">No upload, no account, no telemetry. Your notes never leave the machine during export.</p></article>
+          <article class="card"><div class="icon">📄</div><h3 data-i18n="f2t">Searchable PDF</h3><p data-i18n="f2d">Master PDF plus optional per-note PDFs with styled layout and readable text.</p></article>
+          <article class="card"><div class="icon">🔗</div><h3 data-i18n="f3t">Markdown for Obsidian</h3><p data-i18n="f3d">YAML frontmatter, GFM checklists, relative image links — drop into your vault.</p></article>
+          <article class="card"><div class="icon">📁</div><h3 data-i18n="f4t">Folder hierarchy</h3><p data-i18n="f4d">Mirrors accounts and folders on disk. Filter with --folder and --account.</p></article>
+          <article class="card"><div class="icon">📎</div><h3 data-i18n="f5t">Attachments</h3><p data-i18n="f5d">Images, documents, audio, and video extracted into organized folders.</p></article>
+          <article class="card"><div class="icon">⚡</div><h3 data-i18n="f6t">Incremental export</h3><p data-i18n="f6d">Skip unchanged notes using modification dates and a local state file.</p></article>
+          <article class="card"><div class="icon">🧰</div><h3 data-i18n="f7t">Zero third-party deps</h3><p data-i18n="f7d">zsh + JXA + AppleScript + AppKit. Easy to audit. No Electron.</p></article>
+          <article class="card"><div class="icon">🌐</div><h3 data-i18n="f8t">HTML archive</h3><p data-i18n="f8d">master.html with TOC, search, dark mode, and print-friendly CSS.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="section alt">
+      <div class="wrap">
+        <h2 data-i18n="how_title">Three steps to a permanent backup</h2>
+        <ol class="steps">
+          <li><strong data-i18n="h1t">Download</strong><span data-i18n="h1d">Get the release zip. Keep the script, lib/, and renderer together.</span></li>
+          <li><strong data-i18n="h2t">Allow Automation</strong><span data-i18n="h2d">System Settings → Privacy &amp; Security → Automation → Notes.</span></li>
+          <li><strong data-i18n="h3t">Export</strong><span data-i18n="h3d">Double-click the app or run ./export-apple-notes.sh. Open the Desktop folder.</span></li>
+        </ol>
+        <pre class="code block">./export-apple-notes.sh --folder Work --format md,html,pdf
+./export-apple-notes.sh --incremental --zip</pre>
+      </div>
+    </section>
+
+    <section id="compare" class="section">
+      <div class="wrap">
+        <h2 data-i18n="cmp_title">How it compares</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-i18n="cmp_c0">Capability</th>
+                <th>Apple Notes to PDF</th>
+                <th data-i18n="cmp_c2">Paid apps</th>
+                <th data-i18n="cmp_c3">Other OSS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td data-i18n="cmp_r1">Price</td><td>Free (MIT)</td><td data-i18n="cmp_paid">Paid</td><td>Free</td></tr>
+              <tr><td data-i18n="cmp_r2">No cloud / no account</td><td>✅</td><td>~</td><td>~</td></tr>
+              <tr><td data-i18n="cmp_r3">Shell-auditable sources</td><td>✅</td><td>❌</td><td>~</td></tr>
+              <tr><td data-i18n="cmp_r4">PDF + MD + HTML + JSON</td><td>✅</td><td>✅</td><td>~</td></tr>
+              <tr><td data-i18n="cmp_r5">Incremental</td><td>✅</td><td>✅</td><td>~</td></tr>
+              <tr><td data-i18n="cmp_r6">Telemetry-free by design</td><td>✅</td><td>?</td><td>?</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section alt">
+      <div class="wrap">
+        <h2 data-i18n="faq_title">FAQ</h2>
+        <details open>
+          <summary data-i18n="faq1q">Does this upload my notes to the cloud?</summary>
+          <p data-i18n="faq1a">No. Everything runs on your Mac. See SECURITY.md in the repository.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq2q">Can I export Apple Notes to Markdown for Obsidian?</summary>
+          <p data-i18n="faq2a">Yes. Use --format md (or all). Files include YAML frontmatter and relative links to extracted images.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq3q">Do I need Full Disk Access?</summary>
+          <p data-i18n="faq3a">Not for core text/HTML export. It can improve attachment recovery from the Notes media store.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq4q">What about locked notes?</summary>
+          <p data-i18n="faq4a">Locked notes that Automation cannot read are skipped and listed in skipped.json.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq5q">Is iCloud supported?</summary>
+          <p data-i18n="faq5a">Yes for notes already synced into Notes.app on the Mac. The tool does not call iCloud APIs.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section cta-band">
+      <div class="wrap center">
+        <h2 data-i18n="final_title">Own your notes archive</h2>
+        <p data-i18n="final_lede">Free forever. Open source. Built for people who refuse to lock knowledge in a single app.</p>
+        <a class="btn btn-primary" href="https://github.com/Pitchfork-and-Torch/Apple-Notes-to-PDF/releases/latest" data-i18n="cta_download">Download v7.0.0</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>© 2026 Pitchfork and Torch · <a href="https://github.com/Pitchfork-and-Torch/Apple-Notes-to-PDF/blob/main/LICENSE">MIT</a> · <a href="https://github.com/Pitchfork-and-Torch/Apple-Notes-to-PDF">GitHub</a></p>
+      <p class="fine" data-i18n="footer_privacy">No trackers on this page. Privacy-friendly by design.</p>
+    </div>
+  </footer>
+  <script src="i18n.js" defer></script>
+  <script src="main.js" defer></script>
+</body>
+</html>

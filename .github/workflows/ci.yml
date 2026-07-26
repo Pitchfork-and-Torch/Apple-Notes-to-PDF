@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Required product files
+        run: |
+          set -euo pipefail
+          test -f export-apple-notes.sh
+          test -f render-note-to-pdf.applescript
+          test -f export-apple-notes.command
+          test -f lib/export-engine.jxa.js
+          test -f lib/html-to-markdown.js
+          test -f lib/path-utils.js
+          test -f VERSION
+          test -f LICENSE
+          test -f SECURITY.md
+          test -f README.md
+          test -f CHANGELOG.md
+          test -f docs/index.html
+          head -n1 export-apple-notes.sh | grep -Eq '^#!/(usr/bin/env )?(ba)?zsh|#!/bin/zsh'
+          grep -q 'set -euo pipefail' export-apple-notes.sh
+          VER_FILE=$(tr -d ' \r\n' < VERSION)
+          # VERSION file is source of truth; script reads it at runtime
+          test -n "$VER_FILE"
+          grep -q "$VER_FILE" README.md
+          grep -q "$VER_FILE" CHANGELOG.md
+          grep -q 'include-deleted' export-apple-notes.sh
+          echo "Product files OK (v${VER_FILE})"
+
+      - name: ShellCheck
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq shellcheck zsh
+          shellcheck -S error -s bash \
+            --exclude=SC2039,SC3046,SC3010,SC3037,SC2298,SC1009,SC1073,SC1072,SC2296,SC2298 \
+            export-apple-notes.sh
+          echo "ShellCheck: passed"
+
+      - name: CLI help and version (no Notes.app)
+        run: |
+          set -euo pipefail
+          out=$(zsh ./export-apple-notes.sh --help)
+          echo "$out" | grep -q 'Apple Notes to PDF'
+          echo "$out" | grep -q -- '--limit'
+          echo "$out" | grep -q -- '--output-dir'
+          echo "$out" | grep -q -- '--folder'
+          echo "$out" | grep -q -- '--format'
+          echo "$out" | grep -q -- '--incremental'
+          echo "$out" | grep -q -- '--include-deleted'
+          ver=$(zsh ./export-apple-notes.sh --version)
+          echo "$ver" | grep -q "$(tr -d ' \r\n' < VERSION)"
+          if zsh ./export-apple-notes.sh --not-a-real-flag 2>/dev/null; then
+            echo "expected unknown flag to fail" >&2
+            exit 1
+          fi
+          if zsh ./export-apple-notes.sh --limit 2>/dev/null; then
+            echo "expected missing --limit value to fail" >&2
+            exit 1
+          fi
+          echo "CLI smoke: OK"
+
+      - name: Node unit tests
+        run: |
+          set -euo pipefail
+          node tests/html-to-markdown.test.js
+          node tests/path-utils.test.js
+
+      - name: Landing page basics
+        run: |
+          set -euo pipefail
+          grep -q 'Apple Notes to PDF' docs/index.html
+          grep -q 'application/ld+json' docs/index.html
+          test -f docs/robots.txt
+          test -f docs/sitemap.xml
+          echo "Docs OK"
+
+      - name: No personal path leaks (basic)
+        run: |
+          set -euo pipefail
+          # Build patterns so this workflow file does not self-match
+          PAT1="Users/"
+          PAT1+="Knock"
+          PAT2="C:\\Users\\"
+          PAT2+="Knock"
+          if grep -RIn --exclude-dir=.git --exclude-dir=dist -e "$PAT1" -e "$PAT2" . ; then
+            echo "PII path leak" >&2
+            exit 1
+          fi
+          echo "PII scan: OK"

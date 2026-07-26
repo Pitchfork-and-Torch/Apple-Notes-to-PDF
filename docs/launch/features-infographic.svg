@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2000" viewBox="0 0 1600 2000" role="img" aria-labelledby="title desc">
+  <title id="title">Apple Notes to PDF — Features</title>
+  <desc id="desc">Infographic of Apple Notes to PDF v7.0.1 features: local export, multi-format, privacy, CLI, and packaging.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B1220"/>
+      <stop offset="55%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#818CF8"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1F2937"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="2000" fill="url(#bg)"/>
+  <circle cx="1400" cy="120" r="220" fill="#38BDF8" opacity="0.08"/>
+  <circle cx="180" cy="1700" r="280" fill="#818CF8" opacity="0.08"/>
+
+  <!-- Header -->
+  <rect x="80" y="70" width="1440" height="220" rx="28" fill="url(#card)" filter="url(#soft)"/>
+  <text x="120" y="145" font-family="SF Pro Display, Helvetica Neue, Arial, sans-serif" font-size="48" font-weight="700" fill="#F8FAFC">Apple Notes to PDF</text>
+  <text x="120" y="195" font-family="SF Pro Text, Helvetica Neue, Arial, sans-serif" font-size="26" fill="#94A3B8">v7.0.1 — Local multi-format Notes.app exporter</text>
+  <rect x="120" y="220" width="320" height="36" rx="18" fill="url(#accent)"/>
+  <text x="280" y="245" text-anchor="middle" font-family="SF Pro Text, Helvetica Neue, Arial, sans-serif" font-size="16" font-weight="700" fill="#0B1220">100% on-device · MIT · No telemetry</text>
+  <text x="1480" y="145" text-anchor="end" font-family="SF Pro Text, Helvetica Neue, Arial, sans-serif" font-size="18" fill="#64748B">Pitchfork &amp; Torch</text>
+
+  <!-- Feature grid titles -->
+  <g font-family="SF Pro Text, Helvetica Neue, Arial, sans-serif">
+    <!-- Card 1 -->
+    <rect x="80" y="330" width="460" height="340" rx="24" fill="url(#card)" filter="url(#soft)"/>
+    <text x="120" y="390" font-size="28" font-weight="700" fill="#F8FAFC">Multi-format export</text>
+    <text x="120" y="440" font-size="20" fill="#CBD5E1">• Master PDF archive</text>
+    <text x="120" y="480" font-size="20" fill="#CBD5E1">• Per-note PDFs</text>
+    <text x="120" y="520" font-size="20" fill="#CBD5E1">• Markdown + YAML frontmatter</text>
+    <text x="120" y="560" font-size="20" fill="#CBD5E1">• HTML + searchable master.html</text>
+    <text x="120" y="600" font-size="20" fill="#CBD5E1">• Plain text · JSON index</text>
+    <text x="120" y="640" font-size="20" fill="#CBD5E1">• Attachments (images/docs/media)</text>
+
+    <!-- Card 2 -->
+    <rect x="570" y="330" width="460" height="340" rx="24" fill="url(#card)" filter="url(#soft)"/>
+    <text x="610" y="390" font-size="28" font-weight="700" fill="#F8FAFC">Fidelity &amp; structure</text>
+    <text x="610" y="440" font-size="20" fill="#CBD5E1">• Rich HTML from Notes body</text>
+    <text x="610" y="480" font-size="20" fill="#CBD5E1">• Lists, tables, links, checklists</text>
+    <text x="610" y="520" font-size="20" fill="#CBD5E1">• Folder hierarchy preserved</text>
+    <text x="610" y="560" font-size="20" fill="#CBD5E1">• Multi-account support</text>
+    <text x="610" y="600" font-size="20" fill="#CBD5E1">• Created / modified metadata</text>
+    <text x="610" y="640" font-size="20" fill="#CBD5E1">• cid: attachment rewrite</text>
+
+    <!-- Card 3 -->
+    <rect x="1060" y="330" width="460" height="340" rx="24" fill="url(#card)" filter="url(#soft)"/>
+    <text x="1100" y="390" font-size="28" font-weight="700" fill="#F8FAFC">Privacy first</text>
+    <text x="1100" y="440" font-size="20" fill="#CBD5E1">• Zero network during export</text>
+    <text x="1100" y="480" font-size="20" fill="#CBD5E1">• No accounts or telemetry</text>
+    <text x="1100" y="520" font-size="20" fill="#CBD5E1">• MIT open source</text>
+    <text x="1100" y="560" font-size="20" fill="#CBD5E1">• Automation permission only</text>
+    <text x="1100" y="600" font-size="20" fill="#CBD5E1">• Optional Full Disk Access</text>
+    <text x="1100" y="640" font-size="20" fill="#CBD5E1">• Data stays on your Mac</text>
+
+    <!-- Card 4 -->
+    <rect x="80" y="710" width="710" height="360" rx="24" fill="url(#card)" filter="url(#soft)"/>
+    <text x="120" y="770" font-size="28" font-weight="700" fill="#F8FAFC">CLI power tools</text>
+    <text x="120" y="825" font-size="20" fill="#CBD5E1">--limit · --folder · --account · --since</text>
+    <text x="120" y="870" font-size="20" fill="#CBD5E1">--format pdf,md,html,txt,json,all</text>
+    <text x="120" y="915" font-size="20" fill="#CBD5E1">--incremental · --zip · --dry-run · --quiet</text>
+    <text x="120" y="960" font-size="20" fill="#CBD5E1">--include-deleted · --no-progress · --config</text>
+    <text x="120" y="1015" font-size="18" fill="#94A3B8">Config: ~/.config/apple-notes-to-pdf/config</text>
+
+    <!-- Card 5 -->
+    <rect x="820" y="710" width="700" height="360" rx="24" fill="url(#card)" filter="url(#soft)"/>
+    <text x="860" y="770" font-size="28" font-weight="700" fill="#F8FAFC">v7.0.1 reliability</text>
+    <text x="860" y="825" font-size="20" fill="#CBD5E1">• Fixed JXA plain-text export crash</text>
+    <text x="860" y="870" font-size="20" fill="#CBD5E1">• Case-safe filenames on APFS</text>
+    <text x="860" y="915" font-size="20" fill="#CBD5E1">• Recently Deleted skipped by default</text>
+    <text x="860" y="960" font-size="20" fill="#CBD5E1">• write-failures.json verification</text>
+    <text x="860" y="1015" font-size="18" fill="#94A3B8">Unit-tested path + Markdown helpers</text>
+
+    <!-- Pipeline -->
+    <rect x="80" y="1110" width="1440" height="280" rx="24" fill="url(#card)" filter="url(#soft)"/>
+    <text x="120" y="1175" font-size="28" font-weight="700" fill="#F8FAFC">How it works</text>
+    <!-- steps -->
+    <rect x="120" y="1220" width="300" height="120" rx="16" fill="#0F172A" stroke="#334155"/>
+    <text x="270" y="1270" text-anchor="middle" font-size="18" font-weight="700" fill="#38BDF8">1. Read Notes.app</text>
+    <text x="270" y="1305" text-anchor="middle" font-size="16" fill="#94A3B8">JXA + Automation</text>
+
+    <text x="445" y="1285" font-size="28" fill="#64748B">→</text>
+
+    <rect x="480" y="1220" width="300" height="120" rx="16" fill="#0F172A" stroke="#334155"/>
+    <text x="630" y="1270" text-anchor="middle" font-size="18" font-weight="700" fill="#38BDF8">2. Transform locally</text>
+    <text x="630" y="1305" text-anchor="middle" font-size="16" fill="#94A3B8">HTML · MD · TXT · PDF</text>
+
+    <text x="805" y="1285" font-size="28" fill="#64748B">→</text>
+
+    <rect x="840" y="1220" width="300" height="120" rx="16" fill="#0F172A" stroke="#334155"/>
+    <text x="990" y="1270" text-anchor="middle" font-size="18" font-weight="700" fill="#38BDF8">3. Mirror folders</text>
+    <text x="990" y="1305" text-anchor="middle" font-size="16" fill="#94A3B8">Account / Folder tree</text>
+
+    <text x="1165" y="1285" font-size="28" fill="#64748B">→</text>
+
+    <rect x="1200" y="1220" width="280" height="120" rx="16" fill="#0F172A" stroke="#334155"/>
+    <text x="1340" y="1270" text-anchor="middle" font-size="18" font-weight="700" fill="#38BDF8">4. Your Desktop</text>
+    <text x="1340" y="1305" text-anchor="middle" font-size="16" fill="#94A3B8">Portable archive</text>
+
+    <!-- Footer stats -->
+    <rect x="80" y="1430" width="1440" height="220" rx="24" fill="url(#card)" filter="url(#soft)"/>
+    <text x="120" y="1495" font-size="28" font-weight="700" fill="#F8FAFC">Built for real libraries</text>
+    <text x="200" y="1575" text-anchor="middle" font-size="42" font-weight="700" fill="#38BDF8">340+</text>
+    <text x="200" y="1610" text-anchor="middle" font-size="16" fill="#94A3B8">notes tested</text>
+    <text x="520" y="1575" text-anchor="middle" font-size="42" font-weight="700" fill="#818CF8">6</text>
+    <text x="520" y="1610" text-anchor="middle" font-size="16" fill="#94A3B8">output formats</text>
+    <text x="840" y="1575" text-anchor="middle" font-size="42" font-weight="700" fill="#34D399">0</text>
+    <text x="840" y="1610" text-anchor="middle" font-size="16" fill="#94A3B8">cloud uploads</text>
+    <text x="1180" y="1575" text-anchor="middle" font-size="42" font-weight="700" fill="#FBBF24">macOS</text>
+    <text x="1180" y="1610" text-anchor="middle" font-size="16" fill="#94A3B8">12+ recommended</text>
+
+    <text x="800" y="1745" text-anchor="middle" font-size="22" fill="#E2E8F0">github.com/Pitchfork-and-Torch/Apple-Notes-to-PDF</text>
+    <text x="800" y="1790" text-anchor="middle" font-size="18" fill="#64748B">Free · Open source · Export once, own forever</text>
+    <text x="800" y="1900" text-anchor="middle" font-size="16" fill="#475569">© Pitchfork &amp; Torch · MIT License</text>
+  </g>
+</svg>

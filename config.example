@@ -1,0 +1,14 @@
+# Apple Notes to PDF — example config
+# Copy to: ~/.config/apple-notes-to-pdf/config
+# All keys optional. CLI flags override these values.
+
+# output_dir=~/Desktop/Apple_Notes_Export
+# limit=0
+# folder=
+# account=
+# since=
+format=all
+incremental=false
+attachments=true
+zip=false
+quiet=false
