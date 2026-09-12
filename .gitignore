@@ -1,0 +1,16 @@
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+*.zip
+dist/
+*.log
+Thumbs.db
+.export-state.json
+node_modules/
+*.swp
+.idea/
+.vscode/
+
+# Built applet (rebuild on macOS; included in release zip)
+Apple Notes to PDF.app/
