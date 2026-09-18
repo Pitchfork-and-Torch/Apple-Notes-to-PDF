@@ -218,6 +218,14 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Reject invalid --since early (engine Date.parse would otherwise ignore and export all notes)
+if [[ -n "$SINCE" ]]; then
+  if ! [[ "$SINCE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}([T ][0-9]{2}:[0-9]{2}(:[0-9]{2}(\.[0-9]+)?)?(Z|[+-][0-9]{2}:?[0-9]{2})?)?$ ]]; then
+    log_error "--since must be YYYY-MM-DD or ISO-8601 (got: $SINCE)"
+    exit 2
+  fi
+fi
+
 if [[ -z "$OUTPUT_DIR" ]]; then
   OUTPUT_DIR="$HOME/Desktop/Apple_Notes_Export_$(date +%Y-%m-%d)"
 fi
