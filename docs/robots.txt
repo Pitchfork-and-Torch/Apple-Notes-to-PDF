@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pitchfork-and-torch.github.io/Apple-Notes-to-PDF/sitemap.xml
